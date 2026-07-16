@@ -2,6 +2,7 @@
 description: Architekt IT — ocenia architekturę systemu, skalowalność, spójność międzywarstwową i decyzje technologiczne; projektuje architekturę i dokumentuje decyzje
 mode: subagent
 model: openrouter/deepseek/deepseek-v4-flash
+options: { reasoning_effort: "low", temperature: 0.7 }
 permission:
   read: allow
   edit: allow

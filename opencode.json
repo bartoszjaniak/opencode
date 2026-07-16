@@ -3,7 +3,7 @@
   "references": {
     "patterns": {
       "path": "~/.config/opencode/patterns",
-      "description": "Use for architectural, UX, UI, Angular, backend Rust, and QA patterns. Contains detailed guidance for each domain — szukaj pod @patterns/architecture/, @patterns/ux/, @patterns/ui/, @patterns/angular/, @patterns/backend/, @patterns/qa/"
+      "description": "Use for architectural, UX, UI, Angular, backend Rust, backend Deno, Flutter/Dart, and QA patterns. Contains detailed guidance for each domain — szukaj pod @patterns/architecture/, @patterns/ux/, @patterns/ui/, @patterns/angular/, @patterns/backend/, @patterns/deno/, @patterns/flutter/, @patterns/qa/"
     }
   },
   "mcp": {
@@ -11,9 +11,31 @@
       "type": "local",
       "command": ["npx", "-y", "@angular/cli", "mcp"],
       "enabled": true
+    },
+    "stitch": {
+      "type": "remote",
+      "url": "https://stitch.googleapis.com/mcp",
+      "headers": {
+        "Accept": "application/json",
+        "X-Goog-Api-Key": "{env:STITCH_API_KEY}"
+      },
+      "enabled": true
+    },
+    "linear": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp"
     }
   },
   "plugin": [
-    "./plugins/claude-mem.js"
-  ]
+    "./plugins/claude-mem.js",
+    "./plugins/per-agent-cache.js",
+    "@dietrichgebert/ponytail"
+  ],
+  "provider": {
+    "openrouter": {
+      "options": {
+        "setCacheKey": true
+      }
+    }
+  }
 }

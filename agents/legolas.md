@@ -2,6 +2,7 @@
 description: Frontend Developer (Angular) — implementuje komponenty Angular, ocenia wykonalność frontendu, strukturę komponentów, routing i zarządzanie stanem
 mode: subagent
 model: openrouter/deepseek/deepseek-v4-flash
+options: { reasoning_effort: "low", temperature: 0.7 }
 permission:
   read: allow
   glob: allow
