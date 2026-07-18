@@ -2,7 +2,9 @@
 description: QA Specialist — ocenia testowalność, scenariusze testowe, stany brzegowe i ryzyka jakościowe; pisze testy i automatyzuje QA
 mode: subagent
 model: openrouter/deepseek/deepseek-v4-flash
-options: { reasoning_effort: "low", temperature: 0.7 }
+options:
+  reasoning_effort: "low"
+  temperature: 0.7
 permission:
   read: allow
   edit: allow

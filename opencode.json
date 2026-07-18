@@ -9,7 +9,12 @@
   "mcp": {
     "angular-cli": {
       "type": "local",
-      "command": ["npx", "-y", "@angular/cli", "mcp"],
+      "command": [
+        "npx",
+        "-y",
+        "@angular/cli",
+        "mcp"
+      ],
       "enabled": true
     },
     "stitch": {
@@ -27,9 +32,9 @@
     }
   },
   "plugin": [
+    "@dietrichgebert/ponytail",
     "./plugins/claude-mem.js",
-    "./plugins/per-agent-cache.js",
-    "@dietrichgebert/ponytail"
+    "./plugins/per-agent-cache.js"
   ],
   "provider": {
     "openrouter": {

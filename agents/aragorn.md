@@ -2,7 +2,9 @@
 description: UX Designer — analizuje użyteczność, ścieżki użytkownika, dostępność i spójność interakcji; projektuje doświadczenia użytkownika
 mode: subagent
 model: openrouter/deepseek/deepseek-v4-flash
-options: { reasoning_effort: "low", temperature: 0.7 }
+options:
+  reasoning_effort: "low"
+  temperature: 0.7
 permission:
   read: allow
   glob: allow
