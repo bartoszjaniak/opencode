@@ -3,3 +3,5 @@ package.json
 package-lock.json
 bun.lock
 tui.json
+# lokalny stan pluginu ponytail (aktualny tryb: off/lite/full/ultra) - nie jest konfiguracja repo
+.ponytail-active
