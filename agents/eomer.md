@@ -1,7 +1,7 @@
 ---
 description: Flutter/Dart Developer — implementuje aplikacje mobilne w Flutter (Dart), ocenia wykonalność frontendu mobilnego, architekturę widgetów, zarządzanie stanem i wydajność
 mode: subagent
-model: openrouter/deepseek/deepseek-v4-flash
+model: openrouter/deepseek/deepseek-v4.1-flash:nitro
 options:
   reasoning_effort: "low"
   temperature: 0.7

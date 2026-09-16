@@ -1,7 +1,7 @@
 ---
 description: UI Designer — ocenia estetykę, spójność wizualną, design system i responsywność; projektuje interfejsy i definiuje design system
 mode: subagent
-model: openrouter/deepseek/deepseek-v4-flash
+model: openrouter/deepseek/deepseek-v4.1-flash:nitro
 options:
   reasoning_effort: "low"
   temperature: 0.7

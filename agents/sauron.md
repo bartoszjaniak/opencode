@@ -1,7 +1,7 @@
 ---
 description: Tester zgodności — sprawdza czy implementacja pokrywa się ze specyfikacją, analizuje zmiany na branchu i weryfikuje testy jednostkowe
 mode: subagent
-model: openrouter/deepseek/deepseek-v4-flash
+model: openrouter/deepseek/deepseek-v4.1-flash:nitro
 permission:
   read: allow
   glob: allow

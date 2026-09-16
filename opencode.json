@@ -1,9 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "openrouter/deepseek/deepseek-v4.1-flash:nitro",
+  "small_model": "openrouter/~deepseek/deepseek-v4-flash-latest:nitro",
   "references": {
     "patterns": {
       "path": "~/.config/opencode/patterns",
       "description": "Use for architectural, UX, UI, Angular, backend Rust, backend Deno, Flutter/Dart, and QA patterns. Contains detailed guidance for each domain — szukaj pod @patterns/architecture/, @patterns/ux/, @patterns/ui/, @patterns/angular/, @patterns/backend/, @patterns/deno/, @patterns/flutter/, @patterns/qa/"
+    },
+    "templates": {
+      "path": "~/.config/opencode/templates",
+      "description": "Generatory i szablony plików dla agentów. Zawiera @templates/spec-preview/template.html (generyczny shell podglądu specyfikacji w HTML) oraz @templates/spec-preview/components.md (biblioteka snippetów: karty, tabele, bloki kodu, diagramy i wykresy SVG). Czytaj, gdy generujesz podgląd HTML specyfikacji."
     }
   },
   "mcp": {
@@ -40,6 +46,18 @@
     "openrouter": {
       "options": {
         "setCacheKey": true
+      },
+      "models": {
+        "deepseek/deepseek-v4.1-flash:nitro": {
+          "options": {
+            "provider": { "ignore": ["together"] }
+          }
+        },
+        "~deepseek/deepseek-v4-flash-latest:nitro": {
+          "options": {
+            "provider": { "ignore": ["together"] }
+          }
+        }
       }
     }
   }

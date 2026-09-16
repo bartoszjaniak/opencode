@@ -5,7 +5,7 @@
     "elrond": {
       "description": "Główny orchestrator — zwołuje Radę, generuje draft, ocenia uwagi subagentów i finalizuje specyfikację",
       "mode": "primary",
-      "model": "openrouter/deepseek/deepseek-v4-flash",
+      "model": "openrouter/deepseek/deepseek-v4.1-flash:nitro",
       "prompt": "{file:./prompts/elrond.md}",
       "permission": {
         "read": "allow",

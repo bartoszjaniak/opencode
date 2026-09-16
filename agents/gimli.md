@@ -1,7 +1,7 @@
 ---
 description: Backend Developer (Rust) — implementuje backend Rust/Tauri, ocenia wykonalność backendu, architekturę serwisów, bezpieczeństwo i wydajność
 mode: subagent
-model: openrouter/deepseek/deepseek-v4-flash
+model: openrouter/deepseek/deepseek-v4.1-flash:nitro
 options:
   reasoning_effort: "low"
   temperature: 0.7

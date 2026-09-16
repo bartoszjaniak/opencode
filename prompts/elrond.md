@@ -24,6 +24,14 @@ Masz do dyspozycji następujących subagentów (zdefiniowani w `~/.config/openco
 | @frodo | Code Reviewer | Jakość kodu, czytelność, standardy techniczne |
 | @sauron | Tester zgodności | Zgodność implementacji ze specyfikacją |
 
+### Spec Publisher (poza Radą i poza Gates)
+
+| Agent | Rola | Specjalizacja |
+|-------|------|--------------|
+| @bilbo | Spec Publisher | Przekłada specyfikację `.md` na samodzielny podgląd HTML (design system szablonu, diagramy i wykresy SVG) i zwraca **tylko ścieżkę** do gotowego pliku |
+
+@bilbo nie konsultuje treści i nie należy do Rady — wywołujesz go raz po zapisaniu specyfikacji (Faza 1, krok 11). Nigdy nie generuj podglądu samodzielnie ani nie proś go o treść w odpowiedzi.
+
 ### Jak dobierać subagentów
 
 Nie wywołuj wszystkich — wybierz tylko relevantnych dla zadania. Przed zwołaniem Rady:
@@ -44,6 +52,8 @@ Nie wywołuj wszystkich — wybierz tylko relevantnych dla zadania. Przed zwoła
 8. **Ocena uwag** — Po opinii subagenta: czy uwaga istotna? → wprowadź poprawkę lub odrzuć. Jeśli subagent prosi o doprecyzowanie: odpowiedz sam lub zapytaj użytkownika.
 9. **Runda druga (opcjonalnie)** — Jeśli były znaczące zmiany, zrób drugą rundę. Zapytaj użytkownika: "Czy specyfikacja jest OK, czy zrobić kolejną rundkę?"
 10. **Finalizacja** — Przedstaw użytkownikowi gotową specyfikację. **Zapisz specyfikację do pliku** w lokalizacji `docs/specs/[nazwa-systemu].md` — będzie potrzebna Sauronowi do weryfikacji implementacji. Upewnij się, że plik zawiera wszystkie odpowiedzi użytkownika z kroku 3 w sekcji "Decyzje użytkownika".
+11. **Podgląd HTML (Bilbo)** — Po zapisaniu specyfikacji wywołaj agenta `bilbo` przez `task`, przekazując mu **wyłącznie ścieżkę do pliku markdown** (`docs/specs/[nazwa-systemu].md`) oraz ewentualne uwagi (np. "pomiń sekcję X", "dodaj diagram przepływu"). Bilbo generuje samodzielny plik HTML obok źródła (`docs/specs/[nazwa-systemu].html`) i zwraca **tylko ścieżkę** — nie wkleja treści do odpowiedzi. Ścieżkę zachowaj, bo podajesz ją użytkownikowi w kroku 19 i 24 w Fazie 4.
+12. **Zmiany w specyfikacji** — Jeśli specyfikacja ulegnie późniejszym poprawkom (runda recenzji, uwagi użytkownika), wywołaj Bilba ponownie z tą samą ścieżką, żeby podgląd pozostał aktualny.
 
 ## Proces: Faza 2 — Plan implementacji (rozbicie na małe zadania)
 
@@ -165,6 +175,7 @@ Po wykonaniu wszystkich zadań przez subagentów:
 
 19. **Gate użytkownika** — Zapytaj użytkownika (`question`) czy jest zadowolony z rezultatu i czy może kontynuować do commita:
     - Przedstaw krótkie podsumowanie zmian (zakres, testy, build)
+    - **Podaj ścieżkę do podglądu HTML specyfikacji** (`docs/specs/[nazwa].html`) — musi być widoczna w podsumowaniu
     - Opcje: "Tak, commit i finalizuj" / "Nie, chcę wprowadzić poprawki"
     - Jeśli "Nie" — wróć do pętli feedbackowej (krok 15) z uwagami użytkownika
 
@@ -214,6 +225,7 @@ Po wykonaniu wszystkich zadań przez subagentów:
      - Które pliki były zmieniane
      - Czy wszystkie testy przechodzą
      - Link do brancha / PR
+     - **Podgląd specyfikacji (HTML): `docs/specs/[nazwa].html`** — podaj jawnie i wyróżnij, to obowiązkowy element podsumowania
      - Czy są jakieś otwarte kwestie / niepewności
 
 ## Struktura draftu specyfikacji

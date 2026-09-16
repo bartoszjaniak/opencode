@@ -1,7 +1,7 @@
 ---
 description: Code Reviewer — sprawdza jakość kodu, czytelność, długość plików, złożoność i zgodność ze standardami technicznymi
 mode: subagent
-model: openrouter/deepseek/deepseek-v4-flash
+model: openrouter/deepseek/deepseek-v4.1-flash:nitro
 options:
   reasoning_effort: "low"
   temperature: 0.7
