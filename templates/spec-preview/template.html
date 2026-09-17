@@ -7,7 +7,7 @@
   WIDZET KOMENTARZY (#sc-widget, #sc-bubble, #sc-toast + sekcja "5. Komentarze" w skrypcie) jest czescia
   szablonu - nie usuwaj go i nie modyfikuj. Komentarze trafiaja do localStorage przegladarki.
   PODZIAL PLIKU: gorna czesc (do komentarza "KONIEC TRESCI") to tresc dokumentu - tam wpisuje sie sekcje.
-  Ponizej "KONIEC TRESCI" lezy blok <style> i <script> z szablonu: nie edytuj tego bloku ani go nie czytaj.
+  Ponizej "KONIEC TRESCI" lezy blok styli i skryptu z szablonu: nie edytuj tego bloku ani go nie czytaj.
 -->
 <html lang="pl">
 <head>
@@ -37,43 +37,38 @@
   </aside>
 
   <!-- Prawa kolumna: dokument -->
-  <main class="lg:col-span-9 p-6 md:p-10 lg:p-12 space-y-12 bg-[#f5f0e8]" id="spec-content">
+  <main class="lg:col-span-9 p-6 md:p-10 lg:p-12 bg-[#f5f0e8]" id="spec-content">
     <section class="border-2 border-[#1a1a1a] bg-[#ffffff] p-6 md:p-8 shadow-[4px_4px_0px_#1a1a1a]">
       <h1 class="font-['Space_Grotesk'] text-2xl md:text-4xl font-bold tracking-tight mb-4 leading-tight">{{SPEC_NAME}}</h1>
       <p class="font-['Inter'] text-base md:text-lg leading-relaxed text-[#1a1a1a]/90 max-w-4xl">{{SPEC_LEAD}}</p>
     </section>
 
     <!-- SEKCJE: wklej tutaj sekcje dokumentu (jedna sekcja na kazdy naglowek H2 zrodla).
-         KONTRAKT: <section id="slug" class="space-y-4"> + <h2 class="title text-xl md:text-2xl">TYTUL</h2> + tresc.
-         Numer "01.", kolorowy kwadrat i linia pod naglowkiem generuja sie automatycznie, wiec w tytule NIE wpisuj numeru.
+         KONTRAKT: <section id="slug"> + <h2>TYTUL</h2> + tresc. ZERO KLAS - warstwa semantyczna
+         w <style> styluje same elementy, wiec nie zastanawiasz sie nad nazwami klas.
+         Numer "01.", kolorowy kwadrat i linia pod naglowkiem generuja sie automatycznie (bez numeru w tytule).
 
-         SCIAGA (element zrodla -> komponent; pelne snippet'y: components.md):
-           akapit, lista                 -> <p class="prose">, <ul class="prose">
-           tabela                        -> <div class="table-wrap"><table class="tbl"> z td.k (nazwa), td.v (wartosc), td.n (notka)
-           blok kodu                     -> <div class="codeblock"><div class="cb-head">plik + Kopiuj</div><pre><code id="kod-1">
-           kroki, fazy                   -> <ol class="steps"><li class="step"><span class="n">01</span>...
-           checklista "- [ ]"            -> <div class="checklist"><label><input class="check-item">...
-           liczby, metryki               -> <div class="grid-3"><div class="card tight"> + <div class="metric">
-           porownanie, progi, trendy     -> wykres SVG w <div class="figure">
-           architektura, przeplyw        -> diagram SVG w <div class="figure">
-           ryzyko, ostrzezenie           -> <div class="card danger">, uwaga -> <div class="card warn">
-           status, priorytet, tag        -> <span class="chip k"> (k czarny, y zolty, b niebieski, r czerwony, n neutralny)
-           tytul/etykieta w karcie       -> <div class="label"> lub <div class="label out">
+         SCIAGA (element zrodla -> czysty HTML):
+           akapit, lista                 -> <p>, <ul>, <ol>, <li>
+           tabela                        -> <table> + <thead>/<tbody> (ramka i przewijanie dokladane skryptem)
+           blok kodu                     -> <pre><code> (przycisk "Kopiuj" dokladany skryptem)
+           kroki, fazy                   -> <ol><li>
+           checklista "- [ ]"            -> <ul><li><input type="checkbox"> (licznik dokladany skryptem)
+           wyroznienie statusu           -> <mark> lub <mark data-tone="danger|info|neutral|ink">
+           ramka / callout               -> <blockquote>, nastroj przez <blockquote data-tone="danger|warn|ink">
+           wykres, diagram               -> <figure><figcaption>Tytul</figcaption><svg>...</svg><ul>legenda</ul></figure>
+           rozdzielenie                  -> <hr>
+         Atrybuty, ktore wolno dodac: id sekcji, data-tone. Nic wiecej.
 
-         Zasady: zero zaokraglen, obramowania 2px, akcenty #ffcc00 / #0055ff / #e63b2e, tresc w .prose.
-
-         WZOR SEKCJI do skopiowania:
-         <section id="przyklad" class="space-y-4">
-           <h2 class="title text-xl md:text-2xl">Tytul sekcji</h2>
-           <p class="prose">Akapit z kodem <code class="ic">prog = 12</code>.</p>
-           <div class="grid-2">
-             <div class="card"><div class="label out">Etykieta</div><p class="prose">Tresc karty.</p></div>
-             <div class="card danger"><div class="label">Ryzyko</div><p class="prose">Opis ryzyka.</p></div>
-           </div>
-           <div class="table-wrap"><table class="tbl">
+         WZOR SEKCJI:
+         <section id="przyklad">
+           <h2>Tytul sekcji</h2>
+           <p>Akapit z kodem <code>prog = 12</code> i statusem <mark data-tone="danger">BLOKUJACY</mark>.</p>
+           <blockquote data-tone="warn"><strong>Uwaga</strong><p>Opis uwagi.</p></blockquote>
+           <table>
              <thead><tr><th>Element</th><th>Wartosc</th></tr></thead>
-             <tbody><tr><td class="k">wiersz</td><td class="v">12</td></tr></tbody>
-           </table></div>
+             <tbody><tr><td>wiersz</td><td>12</td></tr></tbody>
+           </table>
          </section> -->
 
     <footer class="border-2 border-[#1a1a1a] bg-[#ffffff] p-6 shadow-[4px_4px_0px_#1a1a1a] flex flex-wrap items-center justify-between gap-4 font-['Space_Grotesk']">
@@ -132,9 +127,56 @@
   .toc-item { display: block; padding: .375rem .625rem; border-left: 2px solid transparent; color: rgba(26,26,26,.8); transition: all .15s; }
   .toc-item:hover { border-left-color: #1a1a1a; background: #f5f0e8; }
   .toc-item.is-active { border-left-color: #1a1a1a; background: #f5f0e8; color: #1a1a1a; font-weight: 700; }
-  /* --- Warstwa komponentow ---
-     Krotkie klasy zamiast dlugich list utility: ten sam wyglad, znacznie mniej kodu w sekcjach.
-     W sekcjach uzywaj TYCH klas (snippet'y w components.md). */
+  /* --- WARSTWA SEMANTYCZNA (obowiazujaca) ---
+     Agent pisze CZYSTY HTML bez klas - te reguly styluja elementy wewnatrz #spec-content.
+     Jedyne sygnaly, jakie moze dodac, to id sekcji oraz atrybut data-tone (danger|warn|info|neutral|ink). */
+  #spec-content { display: flex; flex-direction: column; gap: 3rem; }
+  #spec-content section { display: flex; flex-direction: column; gap: 1rem; }
+  #spec-content h2 { margin: 0; font-family: "Space_Grotesk", sans-serif; font-weight: 700; font-size: 1.5rem; line-height: 2rem; letter-spacing: -.01em; text-transform: uppercase; }
+  #spec-content h3 { margin: 0; font-family: "Space_Grotesk", sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: .02em; }
+  #spec-content h4 { margin: 0; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: .8125rem; text-transform: uppercase; letter-spacing: .06em; color: rgba(26,26,26,.75); }
+  #spec-content p, #spec-content li { margin: 0; font-family: "Inter", sans-serif; font-size: .9375rem; line-height: 1.7; color: rgba(26,26,26,.92); }
+  #spec-content ul, #spec-content ol { margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: .375rem; }
+  #spec-content ul { list-style: square; }
+  #spec-content ol > li::marker { font-family: "JetBrains Mono", monospace; font-weight: 700; color: #0055ff; }
+  #spec-content strong { font-weight: 600; }
+  #spec-content a { color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
+  #spec-content a:hover { background: #ffcc00; }
+  #spec-content hr { width: 100%; margin: 0; border: 0; border-top: 2px solid #1a1a1a; }
+  #spec-content code { font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: .8125em; background: #eee9e0; border: 1px solid #1a1a1a; padding: 0 .25rem; }
+  #spec-content mark { background: #ffcc00; border: 1px solid #1a1a1a; padding: .125rem .5rem; font-family: "JetBrains Mono", monospace; font-size: .75rem; font-weight: 700; white-space: nowrap; }
+  #spec-content mark[data-tone="danger"] { background: #e63b2e; color: #ffffff; }
+  #spec-content mark[data-tone="info"] { background: #0055ff; color: #ffffff; }
+  #spec-content mark[data-tone="neutral"] { background: #eee9e0; }
+  #spec-content mark[data-tone="ink"] { background: #1a1a1a; color: #ffffff; }
+  #spec-content blockquote { margin: 0; border: 2px solid #1a1a1a; background: #ffffff; padding: 1.25rem; box-shadow: 4px 4px 0 #1a1a1a; }
+  #spec-content blockquote[data-tone="danger"] { background: #e63b2e; color: #ffffff; }
+  #spec-content blockquote[data-tone="warn"] { background: #ffcc00; }
+  #spec-content blockquote[data-tone="ink"] { background: #1a1a1a; color: #ffffff; }
+  #spec-content blockquote > p:first-child > strong:first-child,
+  #spec-content blockquote > strong:first-child { display: block; margin-bottom: .25rem; font-family: "JetBrains Mono", monospace; font-size: .6875rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  #spec-content .table-wrap { border: 2px solid #1a1a1a; background: #ffffff; overflow-x: auto; box-shadow: 4px 4px 0 #1a1a1a; }
+  #spec-content table { width: 100%; border-collapse: collapse; font-family: "Inter", sans-serif; font-size: .8125rem; text-align: left; }
+  #spec-content thead th { padding: .75rem; background: #1a1a1a; color: #ffffff; font-family: "Space_Grotesk", sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; }
+  #spec-content tbody td { padding: .75rem; border-top: 2px solid #1a1a1a; vertical-align: top; }
+  #spec-content tbody tr:hover { background: #f5f0e8; }
+  #spec-content tbody td:first-child { font-weight: 600; }
+  #spec-content pre { position: relative; margin: 0; padding: 1.25rem; overflow-x: auto; border: 2px solid #1a1a1a; background: #1a1a1a; color: #e2ddd4; box-shadow: 4px 4px 0 #1a1a1a; font-family: "JetBrains Mono", monospace; font-size: .8125rem; line-height: 1.6; }
+  #spec-content pre code { background: none; border: 0; padding: 0; font-size: inherit; font-weight: 400; color: inherit; }
+  #spec-content pre .copy-btn { position: absolute; top: .5rem; right: .5rem; border: 1px solid rgba(255,255,255,.25); background: #262626; color: #ffcc00; padding: .125rem .5rem; font-family: "JetBrains Mono", monospace; font-size: .6875rem; font-weight: 700; cursor: pointer; }
+  #spec-content pre .copy-btn:hover { background: #ffcc00; color: #1a1a1a; }
+  #spec-content figure { margin: 0; border: 2px solid #1a1a1a; background: #ffffff; padding: 1.25rem; box-shadow: 4px 4px 0 #1a1a1a; }
+  #spec-content figcaption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: .75rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a1a; font-family: "JetBrains Mono", monospace; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+  #spec-content figure svg { width: 100%; height: auto; font-family: "JetBrains Mono", monospace; }
+  #spec-content figure ul { flex-direction: row; flex-wrap: wrap; gap: 1rem; margin-top: .75rem; padding: .5rem 0 0; border-top: 1px solid #1a1a1a; list-style: none; font-family: "JetBrains Mono", monospace; font-size: .75rem; }
+  #spec-content figure ul li { display: flex; align-items: center; gap: .375rem; font-size: .75rem; }
+  #spec-content ul:has(> li > input[type="checkbox"]) { padding-left: 0; list-style: none; gap: .75rem; }
+  #spec-content li:has(> input[type="checkbox"]) { display: flex; align-items: flex-start; gap: .75rem; }
+  #spec-content input[type="checkbox"] { margin-top: .25rem; width: 1rem; height: 1rem; flex: none; accent-color: #1a1a1a; }
+  #spec-content .checklist-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: .75rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a1a; font-family: "JetBrains Mono", monospace; font-size: .75rem; font-weight: 700; text-transform: uppercase; }
+  #spec-content .checklist-head .count { background: #ffcc00; border: 1px solid #1a1a1a; padding: .125rem .625rem; }
+  /* --- Warstwa klas: LEGACY (utrzymana tylko dla dokumentow wygenerowanych wczesniej).
+     Nowe dokumenty nie uzywaja klas - patrz warstwa semantyczna powyzej. */
   .card { border: 2px solid #1a1a1a; background: #ffffff; padding: 1.25rem; box-shadow: 4px 4px 0 #1a1a1a; }
   .card.tight { padding: 1rem; box-shadow: 3px 3px 0 #1a1a1a; }
   .card.ink { background: #1a1a1a; color: #ffffff; }
@@ -252,28 +294,48 @@
   window.addEventListener('scroll', highlightCurrent);
   highlightCurrent();
 
-  // 3. Kopiowanie blokow kodu: <button data-copy="#id-bloku-kodu">Kopiuj</button>
-  document.querySelectorAll('[data-copy]').forEach(btn => {
-    const original = btn.textContent.trim();
-    btn.addEventListener('click', () => {
-      const source = document.querySelector(btn.dataset.copy);
-      try { navigator.clipboard.writeText(source ? source.innerText : ''); } catch (error) { /* brak dostepu do schowka */ }
-      btn.textContent = 'Skopiowano!';
-      setTimeout(() => { btn.textContent = original; }, 2000);
-    });
+  // 3. Normalizacja tresci: agent pisze czysty HTML, skrypt doklada to, co potrzebne wizualnie.
+  // 3a. Tabele w ramke z przewijaniem.
+  document.querySelectorAll('#spec-content table').forEach(table => {
+    const parent = table.parentElement;
+    if (parent && parent.classList.contains('table-wrap')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
   });
 
-  // 4. Licznik listy kontrolnej (elementy z klasa .check-item).
-  const checkboxes = document.querySelectorAll('.check-item');
-  const counter = document.getElementById('checklist-counter');
-  if (checkboxes.length && counter) {
-    const updateChecklist = () => {
-      const checked = Array.from(checkboxes).filter(box => box.checked).length;
-      counter.textContent = 'Status: ' + checked + ' / ' + checkboxes.length + ' (' + Math.round((checked / checkboxes.length) * 100) + '%)';
+  // 3b. Przycisk kopiowania w kazdym bloku kodu.
+  document.querySelectorAll('#spec-content pre').forEach(pre => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn';
+    btn.textContent = 'Kopiuj';
+    btn.addEventListener('click', () => {
+      try { navigator.clipboard.writeText(pre.innerText); } catch (error) { /* brak dostepu do schowka */ }
+      btn.textContent = 'Skopiowano!';
+      setTimeout(() => { btn.textContent = 'Kopiuj'; }, 2000);
+    });
+    pre.appendChild(btn);
+  });
+
+  // 4. Licznik listy kontrolnej: <ul> zawierajaca <li> z <input type="checkbox">.
+  const isTaskList = list => Array.from(list.children).some(item => item.querySelector('input[type="checkbox"]'));
+  document.querySelectorAll('#spec-content ul').forEach(list => {
+    if (!isTaskList(list)) return;
+    const boxes = Array.from(list.querySelectorAll('input[type="checkbox"]'));
+    const head = document.createElement('div');
+    head.className = 'checklist-head';
+    head.innerHTML = '<span>Lista kontrolna</span><span class="count"></span>';
+    const count = head.querySelector('.count');
+    const update = () => {
+      const checked = boxes.filter(box => box.checked).length;
+      count.textContent = checked + ' / ' + boxes.length + ' (' + Math.round((checked / boxes.length) * 100) + '%)';
     };
-    checkboxes.forEach(box => box.addEventListener('change', updateChecklist));
-    updateChecklist();
-  }
+    boxes.forEach(box => box.addEventListener('change', update));
+    update();
+    list.parentNode.insertBefore(head, list);
+  });
 
   // 5. Komentarze do specyfikacji - tryb staly: klik w dowolny element dokumentu otwiera dymek.
   // Zapis w localStorage (klucz per plik) - komentarze nie wchodza do pliku HTML.
